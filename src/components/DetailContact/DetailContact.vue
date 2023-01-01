@@ -1,17 +1,9 @@
 <template>
-    <ion-page>
+    <standard-layout titlePage="Informações do contato" backPage="/home">
         <h1>Informações do contato</h1>
-    </ion-page>
-</template>
+    </standard-layout>
 
-<script>
-import { IonPage } from '@ionic/vue';
-export default {
-    components: {
-        IonPage,
-    },
-}
-</script>
+</template>
 
 <style scoped>
 

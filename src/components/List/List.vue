@@ -1,12 +1,12 @@
 <template>
-    <standard-layout :titlePage="'Meus Contatos'">
+    <standard-layout titlePage="Meus Contatos">
         <ion-list class="mx-1">
-            <ion-item v-for="contact in contacts" router-link="`/contato/${contact.id}`" :key="contact.id">
+            <ion-item v-for="contact in contacts" :key="contact.id" :router-link="`/contato/${contact.id}`">
                 <ion-thumbnail class="mx-1">
                     <ion-img :src="contact.photo"></ion-img>
                 </ion-thumbnail>
                 <ion-thumbnail class="w-100">
-                    {{ contact.name }}
+                    {{ contact.name }} - {{ contact.id }}
                     <div class="small text-secondary">
                         {{ maskedPhone(contact.contact_phone) }}
                     </div>
@@ -32,7 +32,6 @@ export default {
 
     mounted() {
         this.contacts = [...listContact];
-        console.log(this.contacts)
     },
 
     data() {

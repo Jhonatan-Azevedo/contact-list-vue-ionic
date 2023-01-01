@@ -13,7 +13,6 @@ const routes = [
   {
     path: '/contato/:id',
     name: 'contato',
-    props: true,
     component: () => import("../components/DetailContact/DetailContact.vue") 
   }
 ]
