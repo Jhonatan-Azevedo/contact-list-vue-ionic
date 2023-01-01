@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
-import List from '../components/list.vue'
 
 const routes = [
   {
@@ -9,10 +8,16 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: List
+    component: () => import('../components/List/List.vue')
+  },
+  {
+    path: '/contato/:id',
+    name: 'contato',
+    props: true,
+    component: () => import("../components/DetailContact/DetailContact.vue") 
   }
 ]
-
+  
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
