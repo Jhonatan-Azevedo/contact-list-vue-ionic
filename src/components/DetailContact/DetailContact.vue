@@ -3,8 +3,16 @@
         <div class="card mx-auto mt-2" style="width: 18rem;">
             <img :src="contact.photo" :alt="contact.name" class="card-img-top">
             <div class="card-body bg-secondary text-light p-3">
-                <h5 class="card-title"><i class="bi bi-person-fill"></i> {{ contact.name }}</h5>
-                <p class="card-text"><i class="bi bi-telephone-fill"></i> {{ maskedPhone(contact.contact_phone) }}</p>
+                <h5 class="card-title mb-2"><i class="bi bi-person-fill"></i> {{ contact.name }}</h5>
+                <p class="card-text mb-2"><i class="bi bi-telephone-fill"></i> {{ maskedPhone(contact.contact_phone) }}
+                </p>
+                <button class="btn btn-danger px-1" @click="removeContact()">
+                    <i class="bi bi-trash"></i>
+                    Excluir contato
+                </button>
+            </div>
+
+            <div>
             </div>
         </div>
     </standard-layout>
@@ -15,14 +23,20 @@ export default {
     name: "DetailContact",
     props: ['id'],
 
-    mounted() {
-        console.log(this.id);
-    },
-    computed: {
-        contact() {
-            return this.$store.getters.findContact(this.id)
+    data() {
+        return {
+            contact: {
+                name: "",
+                contact_phone: "",
+                photo: ""
+            },
         }
     },
+
+    mounted() {
+        this.contact = this.$store.getters.findContact(this.id)
+    },
+
 
     methods: {
         maskedPhone(phone) {
@@ -33,6 +47,18 @@ export default {
 
                 return phone
             }
+        },
+
+        removeContact() {
+            this.$store.dispatch("removeContact", this.id)
+
+            this.contact = {
+                name: "",
+                contact_phone: "",
+                photo: "",
+            }
+
+            this.$router.push("/home")
         }
     },
 }

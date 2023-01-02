@@ -13,8 +13,11 @@ const store = createStore({
         },
 
         setContact(state, newContact) {
-            console.log(newContact)
             state.contacts.push(newContact)
+        },
+
+        setRemoveContact(state, index) {
+            state.contacts.splice(index, 1)
         }
     },
 
@@ -25,6 +28,11 @@ const store = createStore({
 
         updateNewContact({ commit }, newContact) {
             commit("setContact", newContact)
+        },
+
+        removeContact({ commit, state }, idContact) {
+            const index = state.contacts.findIndex(contact => contact.id == idContact)
+            commit("setRemoveContact", index);
         }
     },
 

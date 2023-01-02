@@ -33,7 +33,7 @@
 
 <script>
 export default {
-    name: "AddContacts",
+    name: "AddContact",
     data() {
         return {
             newContact: {
@@ -58,7 +58,7 @@ export default {
             return false
         },
 
-        async saveContact() {
+        saveContact() {
             console.log(this.hasEmptyField())
             if (this.hasEmptyField()) {
                 return this.showAlert('alert-danger', "Preencha todos os campos para adicionar um novo contato!")
@@ -74,8 +74,10 @@ export default {
 
             this.$store.dispatch('updateNewContact', contact)
 
-            await this.showAlert('alert-success', "Adicionado com sucesso!")
-            return this.$router.push('/home')
+            this.showAlert('alert-success', "Adicionado com sucesso!")
+            setTimeout(() => {
+                return this.$router.push('/home')
+            }, 4000)
         },
 
         showAlert(alert, msg) {

@@ -1,9 +1,9 @@
 <template>
-    <ion-page>
+    <ion-page class="p-0 m-0">
         <ion-header>
             <ion-toolbar>
                 <div class="d-flex align-items-between">
-                    <ion-buttons v-show="backPage" class="float-start ps-3" router-link="/home">
+                    <ion-buttons v-show="backPage" @click="$router.push('/home')">
                         <i class="bi bi-arrow-left"></i>
                     </ion-buttons>
                     <ion-title>{{ titlePage }}</ion-title>

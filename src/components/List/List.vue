@@ -1,7 +1,7 @@
 <template>
     <standard-layout titlePage="Meus Contatos">
         <ion-list class="mt-2">
-            <ion-item v-for="contact in contacts" :key="contact.id" :router-link="`/contato/${contact.id}`"
+            <ion-item v-for="contact in contacts" :key="contact.id" @click="$router.push(`/contato/${contact.id}`)"
                 class="mb-2">
                 <ion-thumbnail class="mx-1">
                     <ion-img :src="contact.photo"></ion-img>
@@ -14,16 +14,17 @@
                 </ion-thumbnail>
             </ion-item>
         </ion-list>
-
-        <ion-button expand="full" color="success" class="m-2" router-link="/addContact">
-            <i class="bi bi-plus-circle"></i>
-        </ion-button>
+        <div class="w-100 p-2">
+            <button class="btn btn-success w-100" @click="$router.push('/addContact')">
+                <i class="bi bi-plus-circle"></i>
+            </button>
+        </div>
     </standard-layout>
 </template>
 
 <script>
 
-import { IonList, IonItem, IonThumbnail, IonImg, IonButton } from '@ionic/vue';
+import { IonList, IonItem, IonThumbnail, IonImg } from '@ionic/vue';
 
 export default {
     components: {
@@ -31,7 +32,6 @@ export default {
         IonItem,
         IonThumbnail,
         IonImg,
-        IonButton
     },
 
     computed: {
