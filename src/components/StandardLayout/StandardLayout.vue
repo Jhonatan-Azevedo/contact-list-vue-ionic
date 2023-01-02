@@ -2,11 +2,12 @@
     <ion-page>
         <ion-header>
             <ion-toolbar>
-                <ion-buttons class="mx-2" v-if="backPage">
-                    <i class="bi bi-arrow-left"></i>
-                    <ion-back-button :default-href="backPage"></ion-back-button>
-                </ion-buttons>
-                <ion-title>{{ titlePage }}</ion-title>
+                <div class="d-flex align-items-between">
+                    <ion-buttons v-show="backPage" class="float-start ps-3" router-link="/home">
+                        <i class="bi bi-arrow-left"></i>
+                    </ion-buttons>
+                    <ion-title>{{ titlePage }}</ion-title>
+                </div>
             </ion-toolbar>
         </ion-header>
 
@@ -14,11 +15,10 @@
             <slot />
         </ion-content>
     </ion-page>
-
 </template>
 
 <script>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons } from '@ionic/vue';
 
 export default {
     components: {
@@ -28,7 +28,6 @@ export default {
         IonTitle,
         IonContent,
         IonButtons,
-        IonBackButton
     },
     props: ['titlePage', 'backPage']
 

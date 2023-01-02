@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
 import StandardLayout from "./components/StandardLayout/StandardLayout.vue"
+import store from "./store"
 
 import { IonicVue } from '@ionic/vue';
 
@@ -26,6 +27,7 @@ import './theme/variables.css';
 
 const app = createApp(App)
   .use(IonicVue)
+  .use(store)
   .use(router);
 
 app.component("standard-layout", StandardLayout)
