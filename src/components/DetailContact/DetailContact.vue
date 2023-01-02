@@ -8,7 +8,7 @@
                 </p>
                 <button class="btn btn-danger px-1" @click="removeContact()">
                     <i class="bi bi-trash"></i>
-                    Excluir contato
+                    Excluir
                 </button>
             </div>
 
@@ -19,6 +19,8 @@
 
 </template>
 <script>
+import { alertController } from '@ionic/vue';
+
 export default {
     name: "DetailContact",
     props: ['id'],
@@ -49,20 +51,41 @@ export default {
             }
         },
 
-        removeContact() {
-            this.$store.dispatch("removeContact", this.id)
+        async removeContact() {
+            const alert = await alertController.create({
+                header: 'Atenção!',
+                message: 'deseja realmente excluir esse contato ?',
+                buttons: [
+                    {
+                        text: 'Sim',
+                        handler: () => {
+                            this.$store.dispatch("removeContact", this.id)
 
-            this.contact = {
-                name: "",
-                contact_phone: "",
-                photo: "",
-            }
+                            this.contact = {
+                                name: "",
+                                contact_phone: "",
+                                photo: "",
+                            }
 
-            this.$router.push("/home")
+                            this.$router.push("/home")
+                        },
+                    },
+                    {
+                        text: 'Não',
+                        handler: () => {
+                            return
+                        },
+                    },
+                ],
+            });
+
+            await alert.present();
+
+
         }
     },
 }
 </script>
 <style scoped>
-img {}
+
 </style>

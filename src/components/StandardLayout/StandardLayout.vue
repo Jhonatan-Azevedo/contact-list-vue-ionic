@@ -3,7 +3,7 @@
         <ion-header>
             <ion-toolbar>
                 <div class="d-flex align-items-between">
-                    <ion-buttons v-show="backPage" @click="$router.push('/home')">
+                    <ion-buttons class="ps-1" v-show="backPage" @click="$router.push('/home')">
                         <i class="bi bi-arrow-left"></i>
                     </ion-buttons>
                     <ion-title>{{ titlePage }}</ion-title>
